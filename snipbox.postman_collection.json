@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "snipbox-collection",
+		"name": "SnipBox API",
+		"description": "API collection for SnipBox - A note-taking application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"your_password\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/token/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "token", ""]
+						},
+						"description": "Get JWT tokens"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"your_refresh_token\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/token/refresh/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "token", "refresh", ""]
+						},
+						"description": "Refresh access token"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication endpoints"
+		},
+		{
+			"name": "Snippets",
+			"item": [
+				{
+					"name": "List Snippets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/snippets/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "snippets", ""]
+						},
+						"description": "Get all snippets"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Snippet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"My First Snippet\",\n    \"note\": \"This is the content of my first snippet\",\n    \"tag_titles\": [\"important\", \"todo\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/snippets/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "snippets", ""]
+						},
+						"description": "Create a new snippet"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Snippet",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/snippets/{{snippet_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "snippets", "{{snippet_id}}", ""]
+						},
+						"description": "Get a specific snippet by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Snippet",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Snippet\",\n    \"note\": \"This is the updated content\",\n    \"tag_titles\": [\"updated\", \"important\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/snippets/{{snippet_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "snippets", "{{snippet_id}}", ""]
+						},
+						"description": "Update a specific snippet"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Snippet",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/snippets/{{snippet_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "snippets", "{{snippet_id}}", ""]
+						},
+						"description": "Delete a specific snippet"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing snippets"
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "List Tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tags/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tags", ""]
+						},
+						"description": "Get all tags"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"new-tag\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tags/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tags", ""]
+						},
+						"description": "Create a new tag"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tag",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tags/{{tag_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tags", "{{tag_id}}", ""]
+						},
+						"description": "Get a specific tag by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Tag",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"updated-tag\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tags/{{tag_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tags", "{{tag_id}}", ""]
+						},
+						"description": "Update a specific tag"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Tag",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tags/{{tag_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tags", "{{tag_id}}", ""]
+						},
+						"description": "Delete a specific tag"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing tags"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [""]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "snippet_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "tag_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "your_access_token",
+			"type": "string"
+		}
+	]
+} 
