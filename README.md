@@ -35,13 +35,11 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Set up environment variables:
-Create a `.env` file in the root directory with the following variables:
+4. Copy the example environment file and configure your settings:
+```bash
+cp .env.example .env  # On Windows: copy .env.example .env
 ```
-DEBUG=True
-SECRET_KEY=your-secret-key
-DATABASE_URL=postgresql://user:password@localhost:5432/snipbox
-```
+Edit the `.env` file to set your SECRET_KEY, DEBUG, ALLOWED_HOSTS, and database settings as needed.
 
 5. Run migrations:
 ```bash
