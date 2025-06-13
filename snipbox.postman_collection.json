@@ -21,7 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"your_password\"\n}"
+							"raw": "{\n    \"username\": \"admin2\",\n    \"password\": \"your_password\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/api/token/",
@@ -171,6 +171,25 @@
 						"description": "Delete a specific snippet"
 					},
 					"response": []
+				},
+				{
+					"name": "Overview API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/snippets/overview/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "snippets", "overview", ""]
+						},
+						"description": "Get total count and list of snippets"
+					},
+					"response": []
 				}
 			],
 			"description": "Endpoints for managing snippets"
@@ -286,6 +305,25 @@
 							"path": ["api", "tags", "{{tag_id}}", ""]
 						},
 						"description": "Delete a specific tag"
+					},
+					"response": []
+				},
+				{
+					"name": "Tag Detail API",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/tags/{{tag_id}}/snippets/",
+							"host": ["{{base_url}}"],
+							"path": ["api", "tags", "{{tag_id}}", "snippets", ""]
+						},
+						"description": "Get snippets linked to a specific tag"
 					},
 					"response": []
 				}
